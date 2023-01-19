@@ -1,4 +1,4 @@
-# HelloSign.Api.ReportApi
+# Dropbox.Sign.Api.ReportApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -19,9 +19,9 @@ Request the creation of one or more report(s).  When the report(s) have been gen
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -34,7 +34,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new ReportApi(config);
+        var reportApi = new ReportApi(config);
 
         var data = new ReportCreateRequest(
             startDate: "09/01/2020",
@@ -47,12 +47,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.ReportCreate(data);
+            var result = reportApi.OauthCreate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

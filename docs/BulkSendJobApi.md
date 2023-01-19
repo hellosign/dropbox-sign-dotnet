@@ -1,4 +1,4 @@
-# HelloSign.Api.BulkSendJobApi
+# Dropbox.Sign.Api.BulkSendJobApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -20,9 +20,9 @@ Returns the status of the BulkSendJob and its SignatureRequests specified by the
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -35,18 +35,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new BulkSendJobApi(config);
+        var bulkSendJobApi = new BulkSendJobApi(config);
 
         var bulkSendJobId = "6e683bc0369ba3d5b6f43c2c22a8031dbf6bd174";
 
         try
         {
-            var result = apiInstance.BulkSendJobGet(bulkSendJobId);
+            var result = bulkSendJobApi.BulkSendJobGet(bulkSendJobId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -116,9 +116,9 @@ Returns a list of BulkSendJob that you can access.
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -131,19 +131,19 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new BulkSendJobApi(config);
+        var bulkSendJobApi = new BulkSendJobApi(config);
 
         var page = 1;
         var pageSize = 20;
 
         try
         {
-            var result = apiInstance.BulkSendJobList(page, pageSize);
+            var result = bulkSendJobApi.BulkSendJobList(page, pageSize);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

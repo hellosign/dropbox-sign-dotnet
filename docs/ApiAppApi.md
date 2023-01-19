@@ -1,4 +1,4 @@
-# HelloSign.Api.ApiAppApi
+# Dropbox.Sign.Api.ApiAppApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -23,9 +23,9 @@ Creates a new API App.
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -38,7 +38,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new ApiAppApi(config);
+        var apiAppApi = new ApiAppApi(config);
 
         var oauth = new SubOAuth(
             callbackUrl: "https://example.com/oauth",
@@ -68,12 +68,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.ApiAppCreate(data);
+            var result = apiAppApi.ApiAppCreate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -143,9 +143,9 @@ Deletes an API App. Can only be invoked for apps you own.
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -158,17 +158,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new ApiAppApi(config);
+        var apiAppApi = new ApiAppApi(config);
 
         var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 
         try
         {
-            apiInstance.ApiAppDelete(clientId);
+            apiAppApi.ApiAppDelete(clientId);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -234,9 +234,9 @@ Returns an object with information about an API App.
 ```csharp
 using System;
 
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -249,18 +249,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new ApiAppApi(config);
+        var apiAppApi = new ApiAppApi(config);
 
         var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
 
         try
         {
-            var result = apiInstance.ApiAppGet(clientId);
+            var result = apiAppApi.ApiAppGet(clientId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -329,9 +329,9 @@ Returns a list of API Apps that are accessible by you. If you are on a team with
 ```csharp
 using System;
 
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -344,19 +344,19 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new ApiAppApi(config);
+        var apiAppApi = new ApiAppApi(config);
 
         var page = 1;
         var pageSize = 2;
 
         try
         {
-            var result = apiInstance.ApiAppList(page, pageSize);
+            var result = apiAppApi.ApiAppList(page, pageSize);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -427,9 +427,9 @@ Updates an existing API App. Can only be invoked for apps you own. Only the fiel
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -442,7 +442,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new ApiAppApi(config);
+        var apiAppApi = new ApiAppApi(config);
 
         var oauth = new SubOAuth(
             callbackUrl: "https://example.com/oauth",
@@ -474,12 +474,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.ApiAppUpdate(clientId, data);
+            var result = apiAppApi.ApiAppUpdate(clientId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

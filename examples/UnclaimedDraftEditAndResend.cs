@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -15,7 +15,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new UnclaimedDraftApi(config);
+        var unclaimedDraftApi = new UnclaimedDraftApi(config);
 
         var data = new UnclaimedDraftEditAndResendRequest(
             clientId: "1a659d9ad95bccd307ecad78d72192f8",
@@ -26,12 +26,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.UnclaimedDraftEditAndResend(signatureRequestId, data);
+            var result = unclaimedDraftApi.UnclaimedDraftEditAndResend(signatureRequestId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

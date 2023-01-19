@@ -1,4 +1,4 @@
-# HelloSign.Api.AccountApi
+# Dropbox.Sign.Api.AccountApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -21,9 +21,9 @@ Creates a new Dropbox Sign Account that is associated with the specified `email_
 ```csharp
 using System;
 
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -36,20 +36,20 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new AccountApi(config);
+        var accountApi = new AccountApi(config);
 
         var data = new AccountCreateRequest(
-            emailAddress: "newuser@hellosign.com"
+            emailAddress: "newuser@dropboxsign.com"
         );
 
         try
         {
-            var result = apiInstance.AccountCreate(data);
+            var result = accountApi.AccountCreate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -118,9 +118,9 @@ Returns the properties and settings of your Account.
 ```csharp
 using System;
 
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -133,16 +133,16 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new AccountApi(config);
+        var accountApi = new AccountApi(config);
 
         try
         {
-            var result = apiInstance.AccountGet(null, "jack@example.com");
+            var result = accountApi.AccountGet(null, "jack@example.com");
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -212,9 +212,9 @@ Updates the properties and settings of your Account. Currently only allows for u
 ```csharp
 using System;
 
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -227,7 +227,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new AccountApi(config);
+        var accountApi = new AccountApi(config);
 
         var data = new AccountUpdateRequest(
             callbackUrl: "https://www.example.com/callback"
@@ -235,12 +235,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.AccountUpdate(data);
+            var result = accountApi.AccountUpdate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -309,9 +309,9 @@ Verifies whether an Dropbox Sign Account exists for the given email address.
 ```csharp
 using System;
 
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -324,20 +324,20 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new AccountApi(config);
+        var accountApi = new AccountApi(config);
 
         var data = new AccountVerifyRequest(
-            emailAddress: "some_user@hellosign.com"
+            emailAddress: "some_user@dropboxsign.com"
         );
 
         try
         {
-            var result = apiInstance.AccountVerify(data);
+            var result = accountApi.AccountVerify(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

@@ -1,4 +1,4 @@
-# HelloSign.Api.OAuthApi
+# Dropbox.Sign.Api.OAuthApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -20,9 +20,9 @@ Once you have retrieved the code from the user callback, you will need to exchan
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -35,7 +35,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new OAuthApi(config);
+        var oAuthApi = new OAuthApi(config);
 
         var data = new OAuthTokenGenerateRequest(
             state: "900e06e2",
@@ -46,12 +46,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.OauthTokenGenerate(data);
+            var result = oAuthApi.OauthTokenGenerate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -120,9 +120,9 @@ Access tokens are only valid for a given period of time (typically one hour) for
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -135,7 +135,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new OAuthApi(config);
+        var oAuthApi = new OAuthApi(config);
 
         var data = new OAuthTokenRefreshRequest(
             refreshToken: "hNTI2MTFmM2VmZDQxZTZjOWRmZmFjZmVmMGMyNGFjMzI2MGI5YzgzNmE3"
@@ -143,12 +143,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.OauthTokenRefresh(data);
+            var result = oAuthApi.OauthTokenRefresh(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

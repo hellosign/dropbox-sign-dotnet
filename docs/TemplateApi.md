@@ -1,4 +1,4 @@
-# HelloSign.Api.TemplateApi
+# Dropbox.Sign.Api.TemplateApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -27,9 +27,9 @@ Gives the specified Account access to the specified Template. The specified Acco
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -42,22 +42,22 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         var data = new TemplateAddUserRequest(
-            emailAddress: "george@hellosign.com"
+            emailAddress: "george@dropboxsign.com"
         );
 
         try
         {
-            var result = apiInstance.TemplateAddUser(templateId, data);
+            var result = templateApi.TemplateAddUser(templateId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -128,9 +128,9 @@ The first step in an embedded template workflow. Creates a draft template that c
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -143,7 +143,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var role1 = new SubTemplateRole(
             name: "Client",
@@ -171,7 +171,7 @@ public class Example
 
         var files = new List<Stream> {
             new FileStream(
-                TestHelper.RootPath + "/example_signature_request.pdf",
+                "./example_signature_request.pdf",
                 FileMode.Open,
                 FileAccess.Read,
                 FileShare.Read
@@ -180,7 +180,7 @@ public class Example
 
         var data = new TemplateCreateEmbeddedDraftRequest(
             clientId: "37dee8d8440c66d54cfa05d92c160882",
-            file: files,
+            files: files,
             title: "Test Template",
             subject: "Please sign this document",
             message: "For your approval",
@@ -193,12 +193,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.TemplateCreateEmbeddedDraft(data);
+            var result = templateApi.TemplateCreateEmbeddedDraft(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -267,9 +267,9 @@ Completely deletes the template specified from the account.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -282,17 +282,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try
         {
-            apiInstance.TemplateDelete(templateId);
+            templateApi.TemplateDelete(templateId);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -358,9 +358,9 @@ Obtain a copy of the current documents specified by the `template_id` parameter.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -373,13 +373,13 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try
         {
-            var result = apiInstance.TemplateFiles(templateId, "pdf");
+            var result = templateApi.TemplateFiles(templateId, "pdf");
 
             var fileStream = File.Create("file_response.pdf");
             result.Seek(0, SeekOrigin.Begin);
@@ -388,7 +388,7 @@ public class Example
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -458,9 +458,9 @@ Obtain a copy of the current documents specified by the `template_id` parameter.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -473,18 +473,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try
         {
-            var result = apiInstance.TemplateFilesAsDataUri(templateId, "pdf", false, false);
+            var result = templateApi.TemplateFilesAsDataUri(templateId, "pdf", false, false);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -553,9 +553,9 @@ Obtain a copy of the current documents specified by the `template_id` parameter.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -568,18 +568,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try
         {
-            var result = apiInstance.TemplateFilesAsFileUrl(templateId, "pdf", false, false);
+            var result = templateApi.TemplateFilesAsFileUrl(templateId, "pdf", false, false);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -648,9 +648,9 @@ Returns the Template specified by the `template_id` parameter.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -663,18 +663,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var templateId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try
         {
-            var result = apiInstance.TemplateGet(templateId);
+            var result = templateApi.TemplateGet(templateId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -743,9 +743,9 @@ Returns a list of the Templates that are accessible by you.  Take a look at our 
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -758,18 +758,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var accountId = "f57db65d3f933b5316d398057a36176831451a35";
 
         try
         {
-            var result = apiInstance.TemplateList(accountId, 1, 20, null);
+            var result = templateApi.TemplateList(accountId, 1, 20, null);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -841,9 +841,9 @@ Removes the specified Account's access to the specified Template.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -856,22 +856,22 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var data = new TemplateRemoveUserRequest(
-            emailAddress: "george@hellosign.com"
+            emailAddress: "george@dropboxsign.com"
         );
 
         var templateId = "21f920ec2b7f4b6bb64d3ed79f26303843046536";
 
         try
         {
-            var result = apiInstance.TemplateRemoveUser(templateId, data);
+            var result = templateApi.TemplateRemoveUser(templateId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -942,9 +942,9 @@ Overlays a new file with the overlay of an existing template. The new file(s) mu
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -957,11 +957,11 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var templateApi = new TemplateApi(config);
 
         var files = new List<Stream> {
             new FileStream(
-                TestHelper.RootPath + "/example_signature_request.pdf",
+                "./example_signature_request.pdf",
                 FileMode.Open,
                 FileAccess.Read,
                 FileShare.Read
@@ -969,19 +969,19 @@ public class Example
         };
 
         var data = new TemplateUpdateFilesRequest(
-            file: files,
+            files: files,
         );
 
         var templateId = "21f920ec2b7f4b6bb64d3ed79f26303843046536";
 
         try
         {
-            var result = apiInstance.TemplateUpdateFiles(templateId, data);
+            var result = templateApi.TemplateUpdateFiles(templateId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

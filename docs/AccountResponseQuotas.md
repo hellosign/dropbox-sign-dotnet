@@ -1,4 +1,4 @@
-# HelloSign.Model.AccountResponseQuotas
+# Dropbox.Sign.Model.AccountResponseQuotas
 Details concerning remaining monthly quotas.
 
 ## Properties
@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiSignatureRequestsLeft** | **int?** |  API signature requests remaining.  | [optional] 
 **DocumentsLeft** | **int?** |  Signature requests remaining.  | [optional] 
-**TotalTemplates** | **int?** |  Total API templates allowed.  | [optional] 
+**TemplatesTotal** | **int?** |  Total API templates allowed.  | [optional] 
 **TemplatesLeft** | **int?** |  API templates remaining.  | [optional] 
 **SmsVerificationsLeft** | **int?** |  SMS verifications  remaining.  | [optional] 
 

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -16,7 +16,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new UnclaimedDraftApi(config);
+        var unclaimedDraftApi = new UnclaimedDraftApi(config);
 
         var signer1 = new SubUnclaimedDraftSigner(
             emailAddress: "jack@example.com",
@@ -50,7 +50,7 @@ public class Example
 
         var files = new List<Stream> {
             new FileStream(
-                TestHelper.RootPath + "/example_signature_request.pdf",
+                "./example_signature_request.pdf",
                 FileMode.Open,
                 FileAccess.Read,
                 FileShare.Read
@@ -62,8 +62,8 @@ public class Example
             type: UnclaimedDraftCreateRequest.TypeEnum.RequestSignature,
             message: "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
             signers: new List<SubUnclaimedDraftSigner>(){signer1, signer2},
-            ccEmailAddresses: new List<string>(){"lawyer@hellosign.com", "lawyer@example.com"},
-            file: files,
+            ccEmailAddresses: new List<string>(){"lawyer@dropboxsign.com", "lawyer@dropboxsign.com"},
+            files: files,
             metadata: metadata,
             signingOptions: subSigningOptions,
             fieldOptions: subFieldOptions,
@@ -72,12 +72,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.UnclaimedDraftCreate(data);
+            var result = unclaimedDraftApi.UnclaimedDraftCreate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

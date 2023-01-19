@@ -1,4 +1,4 @@
-# HelloSign.Api.TeamApi
+# Dropbox.Sign.Api.TeamApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -27,9 +27,9 @@ Invites a user (specified using the `email_address` parameter) to your Team. If 
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -42,7 +42,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         var data = new TeamAddMemberRequest(
             emailAddress: "george@example.com"
@@ -50,12 +50,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.TeamAddMember(data);
+            var result = teamApi.TeamAddMember(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -125,9 +125,9 @@ Creates a new Team and makes you a member. You must not currently belong to a Te
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -140,7 +140,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         var data = new TeamCreateRequest(
             name: "New Team Name"
@@ -148,12 +148,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.TeamCreate(data);
+            var result = teamApi.TeamCreate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -222,9 +222,9 @@ Deletes your Team. Can only be invoked when you have a Team with only one member
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -237,15 +237,15 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         try
         {
-            apiInstance.TeamDelete();
+            teamApi.TeamDelete();
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -307,9 +307,9 @@ Returns information about your Team as well as a list of its members. If you do 
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -322,16 +322,16 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         try
         {
-            var result = apiInstance.TeamGet();
+            var result = teamApi.TeamGet();
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -396,9 +396,9 @@ Provides information about a team.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -411,16 +411,16 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         try
         {
-            var result = apiInstance.TeamInfo();
+            var result = teamApi.TeamInfo();
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -489,9 +489,9 @@ Provides a list of team invites (and their roles).
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -504,17 +504,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
-        var emailAddress = "user@hellosign.com";
+        var teamApi = new TeamApi(config);
+        var emailAddress = "user@dropboxsign.com";
 
         try
         {
-            var result = apiInstance.TeamInvites(emailAddress);
+            var result = teamApi.TeamInvites(emailAddress);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -583,9 +583,9 @@ Provides a paginated list of members (and their roles) that belong to a given te
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -598,17 +598,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
         var teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
 
         try
         {
-            var result = apiInstance.TeamMembers(teamId);
+            var result = teamApi.TeamMembers(teamId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -679,9 +679,9 @@ Removes the provided user Account from your Team. If the Account had an outstand
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -694,21 +694,21 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         var data = new TeamRemoveMemberRequest(
-            emailAddress: "teammate@hellosign.com",
-            newOwnerEmailAddress: "new_teammate@hellosign.com"
+            emailAddress: "teammate@dropboxsign.com",
+            newOwnerEmailAddress: "new_teammate@dropboxsign.com"
         );
 
         try
         {
-            var result = apiInstance.TeamRemoveMember(data);
+            var result = teamApi.TeamRemoveMember(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -777,9 +777,9 @@ Provides a paginated list of sub teams that belong to a given team.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -792,17 +792,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
         var teamId = "4fea99bfcf2b26bfccf6cea3e127fb8bb74d8d9c";
 
         try
         {
-            var result = apiInstance.TeamSubTeams(teamId);
+            var result = teamApi.TeamSubTeams(teamId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -873,9 +873,9 @@ Updates the name of your Team.
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -888,7 +888,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         var data = new TeamUpdateRequest(
             name: "New Team Name"
@@ -896,12 +896,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.TeamUpdate(data);
+            var result = teamApi.TeamUpdate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

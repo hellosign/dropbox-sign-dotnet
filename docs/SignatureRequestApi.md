@@ -1,4 +1,4 @@
-# HelloSign.Api.SignatureRequestApi
+# Dropbox.Sign.Api.SignatureRequestApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 
@@ -34,9 +34,9 @@ Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -49,7 +49,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signerList1Signer = new SubSignatureRequestTemplateSigner(
             role: "Client",
@@ -102,12 +102,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestBulkCreateEmbeddedWithTemplate(data);
+            var result = signatureRequestApi.SignatureRequestBulkCreateEmbeddedWithTemplate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -177,9 +177,9 @@ Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -192,7 +192,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signerList1Signer = new SubSignatureRequestTemplateSigner(
             role: "Client",
@@ -244,12 +244,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestBulkSendWithTemplate(data);
+            var result = signatureRequestApi.SignatureRequestBulkSendWithTemplate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -319,9 +319,9 @@ Cancels an incomplete signature request. This action is **not reversible**.  The
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -334,17 +334,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
         try
         {
-            apiInstance.SignatureRequestCancel(signatureRequestId);
+            signatureRequestApi.SignatureRequestCancel(signatureRequestId);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -411,9 +411,9 @@ Creates a new SignatureRequest with the submitted documents to be signed in an e
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -426,7 +426,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signer1 = new SubSignatureRequestSigner(
             emailAddress: "jack@example.com",
@@ -450,7 +450,7 @@ public class Example
 
         var files = new List<Stream> {
             new FileStream(
-                TestHelper.RootPath + "/example_signature_request.pdf",
+                "./example_signature_request.pdf",
                 FileMode.Open,
                 FileAccess.Read,
                 FileShare.Read
@@ -463,20 +463,20 @@ public class Example
             subject: "The NDA we talked about",
             message: "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
             signers: new List<SubSignatureRequestSigner>(){signer1, signer2},
-            ccEmailAddresses: new List<string>(){"lawyer@hellosign.com", "lawyer@example.com"},
-            file: files,
+            ccEmailAddresses: new List<string>(){"lawyer@dropboxsign.com", "lawyer@dropboxsign.com"},
+            files: files,
             signingOptions: signingOptions,
             testMode: true
         );
 
         try
         {
-            var result = apiInstance.SignatureRequestCreateEmbedded(data);
+            var result = signatureRequestApi.SignatureRequestCreateEmbedded(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -545,9 +545,9 @@ Creates a new SignatureRequest based on the given Template(s) to be signed in an
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -560,7 +560,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signer1 = new SubSignatureRequestTemplateSigner(
             role: "Client",
@@ -587,12 +587,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestCreateEmbeddedWithTemplate(data);
+            var result = signatureRequestApi.SignatureRequestCreateEmbeddedWithTemplate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -661,9 +661,9 @@ Obtain a copy of the current documents specified by the `signature_request_id` p
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -676,13 +676,13 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
         try
         {
-            var result = apiInstance.SignatureRequestFiles(signatureRequestId, "pdf");
+            var result = signatureRequestApi.SignatureRequestFiles(signatureRequestId, "pdf");
 
             var fileStream = File.Create("file_response.pdf");
             result.Seek(0, SeekOrigin.Begin);
@@ -691,7 +691,7 @@ public class Example
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -761,9 +761,9 @@ Obtain a copy of the current documents specified by the `signature_request_id` p
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -776,18 +776,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
         try
         {
-            var result = apiInstance.SignatureRequestFilesAsDataUri(signatureRequestId);
+            var result = signatureRequestApi.SignatureRequestFilesAsDataUri(signatureRequestId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -856,9 +856,9 @@ Obtain a copy of the current documents specified by the `signature_request_id` p
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -871,18 +871,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
         try
         {
-            var result = apiInstance.SignatureRequestFilesAsFileUrl(signatureRequestId);
+            var result = signatureRequestApi.SignatureRequestFilesAsFileUrl(signatureRequestId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -951,9 +951,9 @@ Returns the status of the SignatureRequest specified by the `signature_request_i
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -966,18 +966,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
         try
         {
-            var result = apiInstance.SignatureRequestGet(signatureRequestId);
+            var result = signatureRequestApi.SignatureRequestGet(signatureRequestId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1046,9 +1046,9 @@ Returns a list of SignatureRequests that you can access. This includes Signature
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1061,18 +1061,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var accountId = "accountId";
 
         try
         {
-            var result = apiInstance.SignatureRequestList(accountId);
+            var result = signatureRequestApi.SignatureRequestList(accountId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1144,9 +1144,9 @@ Releases a held SignatureRequest that was claimed and prepared from an [Unclaime
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1159,18 +1159,18 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
         try
         {
-            var result = apiInstance.SignatureRequestReleaseHold(signatureRequestId);
+            var result = signatureRequestApi.SignatureRequestReleaseHold(signatureRequestId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1239,9 +1239,9 @@ Sends an email to the signer reminding them to sign the signature request. You c
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1254,7 +1254,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var data = new SignatureRequestRemindRequest(
             emailAddress: "john@example.com"
@@ -1264,12 +1264,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestRemind(signatureRequestId, data);
+            var result = signatureRequestApi.SignatureRequestRemind(signatureRequestId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1339,9 +1339,9 @@ Removes your access to a completed signature request. This action is **not rever
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1354,17 +1354,17 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
         try
         {
-            apiInstance.SignatureRequestRemove(signatureRequestId);
+            signatureRequestApi.SignatureRequestRemove(signatureRequestId);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1431,9 +1431,9 @@ Creates and sends a new SignatureRequest with the submitted documents. If `form_
 using System;
 using System.Collections.Generic;
 using System.IO;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1446,7 +1446,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signer1 = new SubSignatureRequestSigner(
             emailAddress: "jack@example.com",
@@ -1480,7 +1480,7 @@ public class Example
 
         var files = new List<Stream> {
             new FileStream(
-                TestHelper.RootPath + "/example_signature_request.pdf",
+                "./example_signature_request.pdf",
                 FileMode.Open,
                 FileAccess.Read,
                 FileShare.Read
@@ -1492,8 +1492,8 @@ public class Example
             subject: "The NDA we talked about",
             message: "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
             signers: new List<SubSignatureRequestSigner>(){signer1, signer2},
-            ccEmailAddresses: new List<string>(){"lawyer@hellosign.com", "lawyer@example.com"},
-            file: files,
+            ccEmailAddresses: new List<string>(){"lawyer@dropboxsign.com", "lawyer@dropboxsign.com"},
+            files: files,
             metadata: metadata,
             signingOptions: signingOptions,
             fieldOptions: subFieldOptions,
@@ -1502,12 +1502,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestSend(data);
+            var result = signatureRequestApi.SignatureRequestSend(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1576,9 +1576,9 @@ Creates and sends a new SignatureRequest based off of the Template(s) specified 
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1591,7 +1591,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signer1 = new SubSignatureRequestTemplateSigner(
             role: "Client",
@@ -1632,12 +1632,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestSendWithTemplate(data);
+            var result = signatureRequestApi.SignatureRequestSendWithTemplate(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
@@ -1706,9 +1706,9 @@ Updates the email address and/or the name for a given signer on a signature requ
 ```csharp
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -1721,7 +1721,7 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new SignatureRequestApi(config);
+        var signatureRequestApi = new SignatureRequestApi(config);
 
         var signatureRequestId = "2f9781e1a8e2045224d808c153c2e1d3df6f8f2f";
 
@@ -1732,12 +1732,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestUpdate(signatureRequestId, data);
+            var result = signatureRequestApi.SignatureRequestUpdate(signatureRequestId, data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }

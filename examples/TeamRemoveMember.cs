@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using HelloSign.Api;
-using HelloSign.Client;
-using HelloSign.Model;
+using Dropbox.Sign.Api;
+using Dropbox.Sign.Client;
+using Dropbox.Sign.Model;
 
 public class Example
 {
@@ -15,21 +15,21 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TeamApi(config);
+        var teamApi = new TeamApi(config);
 
         var data = new TeamRemoveMemberRequest(
-            emailAddress: "teammate@hellosign.com",
-            newOwnerEmailAddress: "new_teammate@hellosign.com"
+            emailAddress: "teammate@dropboxsign.com",
+            newOwnerEmailAddress: "new_teammate@dropboxsign.com"
         );
 
         try
         {
-            var result = apiInstance.TeamRemoveMember(data);
+            var result = teamApi.TeamRemoveMember(data);
             Console.WriteLine(result);
         }
         catch (ApiException e)
         {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Exception when calling Dropbox Sign API: " + e.Message);
             Console.WriteLine("Status Code: " + e.ErrorCode);
             Console.WriteLine(e.StackTrace);
         }
