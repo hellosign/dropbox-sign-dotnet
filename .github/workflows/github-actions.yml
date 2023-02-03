@@ -29,7 +29,7 @@ jobs:
     needs: [ build ]
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'Dropbox.Sign.sln'
+      SOLUTION: 'Dropbox.Sign'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
