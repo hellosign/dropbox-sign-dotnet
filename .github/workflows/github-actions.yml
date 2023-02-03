@@ -1,6 +1,17 @@
-on: [push]
+# This workflow will build the project, run integration tests, and release.
+# Because secrets are not available on external forks, this job is expected to fail
+# on external pull requests.
+
+name: Build, Check, Publish
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
-  sdk-build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -11,3 +22,36 @@ jobs:
 
       - name: Ensure no changes in Generated Code
         run: ./bin/check-clean-git-status
+
+  # This job runs on pull requests
+  # Builds package and runs test, does not publish
+  publish-test:
+    runs-on: ubuntu-latest
+    if: >-
+      github.repository == 'hellosign/dropbox-sign-dotnet'
+      && github.ref != 'refs/heads/main'
+      && github.event_name == 'pull_request'
+    needs: [ build ]
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: 'Dropbox.Sign.sln'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.1.1
+
+      - name: Restore dependencies
+        run: nuget restore $SOLUTION
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+
+      - name: Build
+        run: dotnet build $SOLUTION --configuration $BUILD_CONFIG --no-restore
+
+      - name: Run tests
+        run: dotnet test /p:Configuration=$env:BUILD_CONFIG --no-restore --no-build --verbosity normal
