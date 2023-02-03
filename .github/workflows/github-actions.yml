@@ -54,9 +54,10 @@ jobs:
       # This runs on merging to "main" branch
       # Builds and publishes package to nuget.org
       - name: Publish to nuget
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: dotnet nuget push src/${SOLUTION}/bin/Release/*.nupkg -k ${NUGET_API_KEY} -s https://api.nuget.org/v3/index.json
         env:
-          NUGET_API_KEY: testest
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
   # This job runs on merging to "main" branch
   # Creates a new tag using the value in the VERSION file
