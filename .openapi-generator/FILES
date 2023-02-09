@@ -1,6 +1,7 @@
 .gitignore
 Dropbox.Sign.sln
 README.md
+VERSION
 appveyor.yml
 docs/AccountApi.md
 docs/AccountCreateRequest.md
