@@ -118,7 +118,7 @@ namespace Dropbox.Sign.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.1.0/csharp");
+            UserAgent = "openapi-dotnet-1.1.0";
             BasePath = "https://api.hellosign.com/v3";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
