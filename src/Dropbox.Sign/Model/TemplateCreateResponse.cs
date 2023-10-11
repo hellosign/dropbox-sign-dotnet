@@ -27,26 +27,26 @@ using OpenAPIDateConverter = Dropbox.Sign.Client.OpenAPIDateConverter;
 namespace Dropbox.Sign.Model
 {
     /// <summary>
-    /// Contains template id
+    /// TemplateCreateResponse
     /// </summary>
-    [DataContract(Name = "TemplateUpdateFilesResponseTemplate")]
+    [DataContract(Name = "TemplateCreateResponse")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class TemplateUpdateFilesResponseTemplate : IOpenApiTyped, IEquatable<TemplateUpdateFilesResponseTemplate>, IValidatableObject
+    public partial class TemplateCreateResponse : IOpenApiTyped, IEquatable<TemplateCreateResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateUpdateFilesResponseTemplate" /> class.
+        /// Initializes a new instance of the <see cref="TemplateCreateResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TemplateUpdateFilesResponseTemplate() { }
+        protected TemplateCreateResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateUpdateFilesResponseTemplate" /> class.
+        /// Initializes a new instance of the <see cref="TemplateCreateResponse" /> class.
         /// </summary>
-        /// <param name="templateId">The id of the Template..</param>
+        /// <param name="template">template.</param>
         /// <param name="warnings">A list of warnings..</param>
-        public TemplateUpdateFilesResponseTemplate(string templateId = default(string), List<WarningResponse> warnings = default(List<WarningResponse>))
+        public TemplateCreateResponse(TemplateCreateResponse template = default(TemplateCreateResponse), List<WarningResponse> warnings = default(List<WarningResponse>))
         {
             
-            this.TemplateId = templateId;
+            this.Template = template;
             this.Warnings = warnings;
         }
 
@@ -54,31 +54,29 @@ namespace Dropbox.Sign.Model
         /// Attempt to instantiate and hydrate a new instance of this class
         /// </summary>
         /// <param name="jsonData">String of JSON data representing target object</param>
-        public static TemplateUpdateFilesResponseTemplate Init(string jsonData)
+        public static TemplateCreateResponse Init(string jsonData)
         {
-            var obj = JsonConvert.DeserializeObject<TemplateUpdateFilesResponseTemplate>(jsonData);
+            var obj = JsonConvert.DeserializeObject<TemplateCreateResponse>(jsonData);
 
             if (obj == null)
             {
-                throw new Exception("Unable to deserialize JSON to instance of TemplateUpdateFilesResponseTemplate");
+                throw new Exception("Unable to deserialize JSON to instance of TemplateCreateResponse");
             }
 
             return obj;
         }
 
         /// <summary>
-        /// The id of the Template.
+        /// Gets or Sets Template
         /// </summary>
-        /// <value>The id of the Template.</value>
-        [DataMember(Name = "template_id", EmitDefaultValue = true)]
-        public string TemplateId { get; set; }
+        [DataMember(Name = "template", EmitDefaultValue = true)]
+        public TemplateCreateResponse Template { get; set; }
 
         /// <summary>
         /// A list of warnings.
         /// </summary>
         /// <value>A list of warnings.</value>
         [DataMember(Name = "warnings", EmitDefaultValue = true)]
-        [Obsolete]
         public List<WarningResponse> Warnings { get; set; }
 
         /// <summary>
@@ -88,8 +86,8 @@ namespace Dropbox.Sign.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TemplateUpdateFilesResponseTemplate {\n");
-            sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
+            sb.Append("class TemplateCreateResponse {\n");
+            sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -111,15 +109,15 @@ namespace Dropbox.Sign.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TemplateUpdateFilesResponseTemplate);
+            return this.Equals(input as TemplateCreateResponse);
         }
 
         /// <summary>
-        /// Returns true if TemplateUpdateFilesResponseTemplate instances are equal
+        /// Returns true if TemplateCreateResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of TemplateUpdateFilesResponseTemplate to be compared</param>
+        /// <param name="input">Instance of TemplateCreateResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TemplateUpdateFilesResponseTemplate input)
+        public bool Equals(TemplateCreateResponse input)
         {
             if (input == null)
             {
@@ -127,9 +125,9 @@ namespace Dropbox.Sign.Model
             }
             return 
                 (
-                    this.TemplateId == input.TemplateId ||
-                    (this.TemplateId != null &&
-                    this.TemplateId.Equals(input.TemplateId))
+                    this.Template == input.Template ||
+                    (this.Template != null &&
+                    this.Template.Equals(input.Template))
                 ) && 
                 (
                     this.Warnings == input.Warnings ||
@@ -148,9 +146,9 @@ namespace Dropbox.Sign.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.TemplateId != null)
+                if (this.Template != null)
                 {
-                    hashCode = (hashCode * 59) + this.TemplateId.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Template.GetHashCode();
                 }
                 if (this.Warnings != null)
                 {
@@ -164,10 +162,10 @@ namespace Dropbox.Sign.Model
         {
             var types = new List<OpenApiType>();
             types.Add(new OpenApiType(){
-                Name = "template_id",
-                Property = "TemplateId",
-                Type = "string",
-                Value = TemplateId,
+                Name = "template",
+                Property = "Template",
+                Type = "TemplateCreateResponse",
+                Value = Template,
             });
             types.Add(new OpenApiType(){
                 Name = "warnings",
