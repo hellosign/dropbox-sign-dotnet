@@ -27,40 +27,38 @@ using OpenAPIDateConverter = Dropbox.Sign.Client.OpenAPIDateConverter;
 namespace Dropbox.Sign.Model
 {
     /// <summary>
-    /// Contains template id
+    /// Template object with parameters: &#x60;template_id&#x60;.
     /// </summary>
-    [DataContract(Name = "TemplateUpdateFilesResponseTemplate")]
+    [DataContract(Name = "TemplateCreateResponseTemplate")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class TemplateUpdateFilesResponseTemplate : IOpenApiTyped, IEquatable<TemplateUpdateFilesResponseTemplate>, IValidatableObject
+    public partial class TemplateCreateResponseTemplate : IOpenApiTyped, IEquatable<TemplateCreateResponseTemplate>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateUpdateFilesResponseTemplate" /> class.
+        /// Initializes a new instance of the <see cref="TemplateCreateResponseTemplate" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected TemplateUpdateFilesResponseTemplate() { }
+        protected TemplateCreateResponseTemplate() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateUpdateFilesResponseTemplate" /> class.
+        /// Initializes a new instance of the <see cref="TemplateCreateResponseTemplate" /> class.
         /// </summary>
         /// <param name="templateId">The id of the Template..</param>
-        /// <param name="warnings">A list of warnings..</param>
-        public TemplateUpdateFilesResponseTemplate(string templateId = default(string), List<WarningResponse> warnings = default(List<WarningResponse>))
+        public TemplateCreateResponseTemplate(string templateId = default(string))
         {
             
             this.TemplateId = templateId;
-            this.Warnings = warnings;
         }
 
         /// <summary>
         /// Attempt to instantiate and hydrate a new instance of this class
         /// </summary>
         /// <param name="jsonData">String of JSON data representing target object</param>
-        public static TemplateUpdateFilesResponseTemplate Init(string jsonData)
+        public static TemplateCreateResponseTemplate Init(string jsonData)
         {
-            var obj = JsonConvert.DeserializeObject<TemplateUpdateFilesResponseTemplate>(jsonData);
+            var obj = JsonConvert.DeserializeObject<TemplateCreateResponseTemplate>(jsonData);
 
             if (obj == null)
             {
-                throw new Exception("Unable to deserialize JSON to instance of TemplateUpdateFilesResponseTemplate");
+                throw new Exception("Unable to deserialize JSON to instance of TemplateCreateResponseTemplate");
             }
 
             return obj;
@@ -74,23 +72,14 @@ namespace Dropbox.Sign.Model
         public string TemplateId { get; set; }
 
         /// <summary>
-        /// A list of warnings.
-        /// </summary>
-        /// <value>A list of warnings.</value>
-        [DataMember(Name = "warnings", EmitDefaultValue = true)]
-        [Obsolete]
-        public List<WarningResponse> Warnings { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TemplateUpdateFilesResponseTemplate {\n");
+            sb.Append("class TemplateCreateResponseTemplate {\n");
             sb.Append("  TemplateId: ").Append(TemplateId).Append("\n");
-            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -111,15 +100,15 @@ namespace Dropbox.Sign.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TemplateUpdateFilesResponseTemplate);
+            return this.Equals(input as TemplateCreateResponseTemplate);
         }
 
         /// <summary>
-        /// Returns true if TemplateUpdateFilesResponseTemplate instances are equal
+        /// Returns true if TemplateCreateResponseTemplate instances are equal
         /// </summary>
-        /// <param name="input">Instance of TemplateUpdateFilesResponseTemplate to be compared</param>
+        /// <param name="input">Instance of TemplateCreateResponseTemplate to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TemplateUpdateFilesResponseTemplate input)
+        public bool Equals(TemplateCreateResponseTemplate input)
         {
             if (input == null)
             {
@@ -130,12 +119,6 @@ namespace Dropbox.Sign.Model
                     this.TemplateId == input.TemplateId ||
                     (this.TemplateId != null &&
                     this.TemplateId.Equals(input.TemplateId))
-                ) && 
-                (
-                    this.Warnings == input.Warnings ||
-                    this.Warnings != null &&
-                    input.Warnings != null &&
-                    this.Warnings.SequenceEqual(input.Warnings)
                 );
         }
 
@@ -152,10 +135,6 @@ namespace Dropbox.Sign.Model
                 {
                     hashCode = (hashCode * 59) + this.TemplateId.GetHashCode();
                 }
-                if (this.Warnings != null)
-                {
-                    hashCode = (hashCode * 59) + this.Warnings.GetHashCode();
-                }
                 return hashCode;
             }
         }
@@ -168,12 +147,6 @@ namespace Dropbox.Sign.Model
                 Property = "TemplateId",
                 Type = "string",
                 Value = TemplateId,
-            });
-            types.Add(new OpenApiType(){
-                Name = "warnings",
-                Property = "Warnings",
-                Type = "List<WarningResponse>",
-                Value = Warnings,
             });
 
             return types;

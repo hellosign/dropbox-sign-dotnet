@@ -96,6 +96,7 @@ docs/SubFormFieldsPerDocumentCheckbox.md
 docs/SubFormFieldsPerDocumentCheckboxMerge.md
 docs/SubFormFieldsPerDocumentDateSigned.md
 docs/SubFormFieldsPerDocumentDropdown.md
+docs/SubFormFieldsPerDocumentFontEnum.md
 docs/SubFormFieldsPerDocumentHyperlink.md
 docs/SubFormFieldsPerDocumentInitials.md
 docs/SubFormFieldsPerDocumentRadio.md
@@ -135,6 +136,9 @@ docs/TemplateApi.md
 docs/TemplateCreateEmbeddedDraftRequest.md
 docs/TemplateCreateEmbeddedDraftResponse.md
 docs/TemplateCreateEmbeddedDraftResponseTemplate.md
+docs/TemplateCreateRequest.md
+docs/TemplateCreateResponse.md
+docs/TemplateCreateResponseTemplate.md
 docs/TemplateEditResponse.md
 docs/TemplateGetResponse.md
 docs/TemplateListResponse.md
@@ -295,6 +299,7 @@ src/Dropbox.Sign/Model/SubFormFieldsPerDocumentCheckbox.cs
 src/Dropbox.Sign/Model/SubFormFieldsPerDocumentCheckboxMerge.cs
 src/Dropbox.Sign/Model/SubFormFieldsPerDocumentDateSigned.cs
 src/Dropbox.Sign/Model/SubFormFieldsPerDocumentDropdown.cs
+src/Dropbox.Sign/Model/SubFormFieldsPerDocumentFontEnum.cs
 src/Dropbox.Sign/Model/SubFormFieldsPerDocumentHyperlink.cs
 src/Dropbox.Sign/Model/SubFormFieldsPerDocumentInitials.cs
 src/Dropbox.Sign/Model/SubFormFieldsPerDocumentRadio.cs
@@ -332,6 +337,9 @@ src/Dropbox.Sign/Model/TemplateAddUserRequest.cs
 src/Dropbox.Sign/Model/TemplateCreateEmbeddedDraftRequest.cs
 src/Dropbox.Sign/Model/TemplateCreateEmbeddedDraftResponse.cs
 src/Dropbox.Sign/Model/TemplateCreateEmbeddedDraftResponseTemplate.cs
+src/Dropbox.Sign/Model/TemplateCreateRequest.cs
+src/Dropbox.Sign/Model/TemplateCreateResponse.cs
+src/Dropbox.Sign/Model/TemplateCreateResponseTemplate.cs
 src/Dropbox.Sign/Model/TemplateEditResponse.cs
 src/Dropbox.Sign/Model/TemplateGetResponse.cs
 src/Dropbox.Sign/Model/TemplateListResponse.cs
