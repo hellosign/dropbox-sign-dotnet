@@ -27,50 +27,63 @@ using OpenAPIDateConverter = Dropbox.Sign.Client.OpenAPIDateConverter;
 namespace Dropbox.Sign.Model
 {
     /// <summary>
-    /// SignatureRequestBulkSendWithTemplateRequest
+    /// SignatureRequestEditWithTemplateRequest
     /// </summary>
-    [DataContract(Name = "SignatureRequestBulkSendWithTemplateRequest")]
+    [DataContract(Name = "SignatureRequestEditWithTemplateRequest")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class SignatureRequestBulkSendWithTemplateRequest : IOpenApiTyped, IEquatable<SignatureRequestBulkSendWithTemplateRequest>, IValidatableObject
+    public partial class SignatureRequestEditWithTemplateRequest : IOpenApiTyped, IEquatable<SignatureRequestEditWithTemplateRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestBulkSendWithTemplateRequest" /> class.
+        /// Initializes a new instance of the <see cref="SignatureRequestEditWithTemplateRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SignatureRequestBulkSendWithTemplateRequest() { }
+        protected SignatureRequestEditWithTemplateRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestBulkSendWithTemplateRequest" /> class.
+        /// Initializes a new instance of the <see cref="SignatureRequestEditWithTemplateRequest" /> class.
         /// </summary>
         /// <param name="templateIds">Use &#x60;template_ids&#x60; to create a SignatureRequest from one or more templates, in the order in which the template will be used. (required).</param>
-        /// <param name="signerFile">&#x60;signer_file&#x60; is a CSV file defining values and options for signer fields. Required unless a &#x60;signer_list&#x60; is used, you may not use both. The CSV can have the following columns:  - &#x60;name&#x60;: the name of the signer filling the role of RoleName - &#x60;email_address&#x60;: email address of the signer filling the role of RoleName - &#x60;pin&#x60;: the 4- to 12-character access code that will secure this signer&#39;s signature page (optional) - &#x60;sms_phone_number&#x60;: An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page. (optional)      By using the feature, you agree you are responsible for obtaining a signer&#39;s consent to receive text messages from Dropbox Sign related to this signature request and confirm you have obtained such consent from all signers prior to enabling SMS delivery for this signature request. [Learn more](https://faq.hellosign.com/hc/en-us/articles/15815316468877-Dropbox-Sign-SMS-tools-add-on).      **Note**: Not available in test mode and requires a Standard plan or higher. - &#x60;*_field&#x60;: any column with a _field\&quot; suffix will be treated as a custom field (optional)      You may only specify field values here, any other options should be set in the custom_fields request parameter.  Example CSV:  &#x60;&#x60;&#x60; name, email_address, pin, company_field George, george@example.com, d79a3td, ABC Corp Mary, mary@example.com, gd9as5b, 123 LLC &#x60;&#x60;&#x60;.</param>
-        /// <param name="signerList">&#x60;signer_list&#x60; is an array defining values and options for signer fields. Required unless a &#x60;signer_file&#x60; is used, you may not use both..</param>
         /// <param name="allowDecline">Allows signers to decline to sign a document if &#x60;true&#x60;. Defaults to &#x60;false&#x60;. (default to false).</param>
         /// <param name="ccs">Add CC email recipients. Required when a CC role exists for the Template..</param>
-        /// <param name="clientId">The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app..</param>
-        /// <param name="customFields">When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template..</param>
+        /// <param name="clientId">Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app..</param>
+        /// <param name="customFields">An array defining values and options for custom fields. Required when a custom field exists in the Template..</param>
+        /// <param name="files">Use &#x60;files[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **files** or **file_urls[]**, but not both..</param>
+        /// <param name="fileUrls">Use &#x60;file_urls[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **files** or **file_urls[]**, but not both..</param>
+        /// <param name="isQualifiedSignature">Send with a value of &#x60;true&#x60; if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer&#39;s identity.&lt;br&gt; **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer. (default to false).</param>
+        /// <param name="isEid">Send with a value of &#x60;true&#x60; if you wish to enable [electronic identification (eID)](https://www.hellosign.com/features/electronic-id), which requires the signer to verify their identity with an eID provider to sign a document.&lt;br&gt; **Note**: eID is only available on the Premium API plan. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer. (default to false).</param>
         /// <param name="message">The custom message in the email that will be sent to the signers..</param>
         /// <param name="metadata">Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long..</param>
+        /// <param name="signers">Add Signers to your Templated-based Signature Request. (required).</param>
+        /// <param name="signingOptions">signingOptions.</param>
         /// <param name="signingRedirectUrl">The URL you want signers redirected to after they successfully sign..</param>
         /// <param name="subject">The subject in the email that will be sent to the signers..</param>
         /// <param name="testMode">Whether this is a test, the signature request will not be legally binding if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;. (default to false).</param>
         /// <param name="title">The title you want to assign to the SignatureRequest..</param>
-        public SignatureRequestBulkSendWithTemplateRequest(List<string> templateIds = default(List<string>), System.IO.Stream signerFile = default(System.IO.Stream), List<SubBulkSignerList> signerList = default(List<SubBulkSignerList>), bool allowDecline = false, List<SubCC> ccs = default(List<SubCC>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), string signingRedirectUrl = default(string), string subject = default(string), bool testMode = false, string title = default(string))
+        public SignatureRequestEditWithTemplateRequest(List<string> templateIds = default(List<string>), bool allowDecline = false, List<SubCC> ccs = default(List<SubCC>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), List<System.IO.Stream> files = default(List<System.IO.Stream>), List<string> fileUrls = default(List<string>), bool isQualifiedSignature = false, bool isEid = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), List<SubSignatureRequestTemplateSigner> signers = default(List<SubSignatureRequestTemplateSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), string subject = default(string), bool testMode = false, string title = default(string))
         {
             
             // to ensure "templateIds" is required (not null)
             if (templateIds == null)
             {
-                throw new ArgumentNullException("templateIds is a required property for SignatureRequestBulkSendWithTemplateRequest and cannot be null");
+                throw new ArgumentNullException("templateIds is a required property for SignatureRequestEditWithTemplateRequest and cannot be null");
             }
             this.TemplateIds = templateIds;
-            this.SignerFile = signerFile;
-            this.SignerList = signerList;
+            // to ensure "signers" is required (not null)
+            if (signers == null)
+            {
+                throw new ArgumentNullException("signers is a required property for SignatureRequestEditWithTemplateRequest and cannot be null");
+            }
+            this.Signers = signers;
             this.AllowDecline = allowDecline;
             this.Ccs = ccs;
             this.ClientId = clientId;
             this.CustomFields = customFields;
+            this.Files = files;
+            this.FileUrls = fileUrls;
+            this.IsQualifiedSignature = isQualifiedSignature;
+            this.IsEid = isEid;
             this.Message = message;
             this.Metadata = metadata;
+            this.SigningOptions = signingOptions;
             this.SigningRedirectUrl = signingRedirectUrl;
             this.Subject = subject;
             this.TestMode = testMode;
@@ -81,13 +94,13 @@ namespace Dropbox.Sign.Model
         /// Attempt to instantiate and hydrate a new instance of this class
         /// </summary>
         /// <param name="jsonData">String of JSON data representing target object</param>
-        public static SignatureRequestBulkSendWithTemplateRequest Init(string jsonData)
+        public static SignatureRequestEditWithTemplateRequest Init(string jsonData)
         {
-            var obj = JsonConvert.DeserializeObject<SignatureRequestBulkSendWithTemplateRequest>(jsonData);
+            var obj = JsonConvert.DeserializeObject<SignatureRequestEditWithTemplateRequest>(jsonData);
 
             if (obj == null)
             {
-                throw new Exception("Unable to deserialize JSON to instance of SignatureRequestBulkSendWithTemplateRequest");
+                throw new Exception("Unable to deserialize JSON to instance of SignatureRequestEditWithTemplateRequest");
             }
 
             return obj;
@@ -101,18 +114,11 @@ namespace Dropbox.Sign.Model
         public List<string> TemplateIds { get; set; }
 
         /// <summary>
-        /// &#x60;signer_file&#x60; is a CSV file defining values and options for signer fields. Required unless a &#x60;signer_list&#x60; is used, you may not use both. The CSV can have the following columns:  - &#x60;name&#x60;: the name of the signer filling the role of RoleName - &#x60;email_address&#x60;: email address of the signer filling the role of RoleName - &#x60;pin&#x60;: the 4- to 12-character access code that will secure this signer&#39;s signature page (optional) - &#x60;sms_phone_number&#x60;: An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page. (optional)      By using the feature, you agree you are responsible for obtaining a signer&#39;s consent to receive text messages from Dropbox Sign related to this signature request and confirm you have obtained such consent from all signers prior to enabling SMS delivery for this signature request. [Learn more](https://faq.hellosign.com/hc/en-us/articles/15815316468877-Dropbox-Sign-SMS-tools-add-on).      **Note**: Not available in test mode and requires a Standard plan or higher. - &#x60;*_field&#x60;: any column with a _field\&quot; suffix will be treated as a custom field (optional)      You may only specify field values here, any other options should be set in the custom_fields request parameter.  Example CSV:  &#x60;&#x60;&#x60; name, email_address, pin, company_field George, george@example.com, d79a3td, ABC Corp Mary, mary@example.com, gd9as5b, 123 LLC &#x60;&#x60;&#x60;
+        /// Add Signers to your Templated-based Signature Request.
         /// </summary>
-        /// <value>&#x60;signer_file&#x60; is a CSV file defining values and options for signer fields. Required unless a &#x60;signer_list&#x60; is used, you may not use both. The CSV can have the following columns:  - &#x60;name&#x60;: the name of the signer filling the role of RoleName - &#x60;email_address&#x60;: email address of the signer filling the role of RoleName - &#x60;pin&#x60;: the 4- to 12-character access code that will secure this signer&#39;s signature page (optional) - &#x60;sms_phone_number&#x60;: An E.164 formatted phone number that will receive a code via SMS to access this signer&#39;s signature page. (optional)      By using the feature, you agree you are responsible for obtaining a signer&#39;s consent to receive text messages from Dropbox Sign related to this signature request and confirm you have obtained such consent from all signers prior to enabling SMS delivery for this signature request. [Learn more](https://faq.hellosign.com/hc/en-us/articles/15815316468877-Dropbox-Sign-SMS-tools-add-on).      **Note**: Not available in test mode and requires a Standard plan or higher. - &#x60;*_field&#x60;: any column with a _field\&quot; suffix will be treated as a custom field (optional)      You may only specify field values here, any other options should be set in the custom_fields request parameter.  Example CSV:  &#x60;&#x60;&#x60; name, email_address, pin, company_field George, george@example.com, d79a3td, ABC Corp Mary, mary@example.com, gd9as5b, 123 LLC &#x60;&#x60;&#x60;</value>
-        [DataMember(Name = "signer_file", EmitDefaultValue = true)]
-        public System.IO.Stream SignerFile { get; set; }
-
-        /// <summary>
-        /// &#x60;signer_list&#x60; is an array defining values and options for signer fields. Required unless a &#x60;signer_file&#x60; is used, you may not use both.
-        /// </summary>
-        /// <value>&#x60;signer_list&#x60; is an array defining values and options for signer fields. Required unless a &#x60;signer_file&#x60; is used, you may not use both.</value>
-        [DataMember(Name = "signer_list", EmitDefaultValue = true)]
-        public List<SubBulkSignerList> SignerList { get; set; }
+        /// <value>Add Signers to your Templated-based Signature Request.</value>
+        [DataMember(Name = "signers", IsRequired = true, EmitDefaultValue = true)]
+        public List<SubSignatureRequestTemplateSigner> Signers { get; set; }
 
         /// <summary>
         /// Allows signers to decline to sign a document if &#x60;true&#x60;. Defaults to &#x60;false&#x60;.
@@ -129,18 +135,47 @@ namespace Dropbox.Sign.Model
         public List<SubCC> Ccs { get; set; }
 
         /// <summary>
-        /// The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.
+        /// Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.
         /// </summary>
-        /// <value>The client id of the API App you want to associate with this request. Used to apply the branding and callback url defined for the app.</value>
+        /// <value>Client id of the app to associate with the signature request. Used to apply the branding and callback url defined for the app.</value>
         [DataMember(Name = "client_id", EmitDefaultValue = true)]
         public string ClientId { get; set; }
 
         /// <summary>
-        /// When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
+        /// An array defining values and options for custom fields. Required when a custom field exists in the Template.
         /// </summary>
-        /// <value>When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.</value>
+        /// <value>An array defining values and options for custom fields. Required when a custom field exists in the Template.</value>
         [DataMember(Name = "custom_fields", EmitDefaultValue = true)]
         public List<SubCustomField> CustomFields { get; set; }
+
+        /// <summary>
+        /// Use &#x60;files[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **files** or **file_urls[]**, but not both.
+        /// </summary>
+        /// <value>Use &#x60;files[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **files** or **file_urls[]**, but not both.</value>
+        [DataMember(Name = "files", EmitDefaultValue = true)]
+        public List<System.IO.Stream> Files { get; set; }
+
+        /// <summary>
+        /// Use &#x60;file_urls[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **files** or **file_urls[]**, but not both.
+        /// </summary>
+        /// <value>Use &#x60;file_urls[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **files** or **file_urls[]**, but not both.</value>
+        [DataMember(Name = "file_urls", EmitDefaultValue = true)]
+        public List<string> FileUrls { get; set; }
+
+        /// <summary>
+        /// Send with a value of &#x60;true&#x60; if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer&#39;s identity.&lt;br&gt; **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.
+        /// </summary>
+        /// <value>Send with a value of &#x60;true&#x60; if you wish to enable [Qualified Electronic Signatures](https://www.hellosign.com/features/qualified-electronic-signatures) (QES), which requires a face-to-face call to verify the signer&#39;s identity.&lt;br&gt; **Note**: QES is only available on the Premium API plan as an add-on purchase. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.</value>
+        [DataMember(Name = "is_qualified_signature", EmitDefaultValue = true)]
+        [Obsolete]
+        public bool IsQualifiedSignature { get; set; }
+
+        /// <summary>
+        /// Send with a value of &#x60;true&#x60; if you wish to enable [electronic identification (eID)](https://www.hellosign.com/features/electronic-id), which requires the signer to verify their identity with an eID provider to sign a document.&lt;br&gt; **Note**: eID is only available on the Premium API plan. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.
+        /// </summary>
+        /// <value>Send with a value of &#x60;true&#x60; if you wish to enable [electronic identification (eID)](https://www.hellosign.com/features/electronic-id), which requires the signer to verify their identity with an eID provider to sign a document.&lt;br&gt; **Note**: eID is only available on the Premium API plan. Cannot be used in &#x60;test_mode&#x60;. Only works on requests with one signer.</value>
+        [DataMember(Name = "is_eid", EmitDefaultValue = true)]
+        public bool IsEid { get; set; }
 
         /// <summary>
         /// The custom message in the email that will be sent to the signers.
@@ -155,6 +190,12 @@ namespace Dropbox.Sign.Model
         /// <value>Key-value data that should be attached to the signature request. This metadata is included in all API responses and events involving the signature request. For example, use the metadata field to store a signer&#39;s order number for look up when receiving events for the signature request.  Each request can include up to 10 metadata keys (or 50 nested metadata keys), with key names up to 40 characters long and values up to 1000 characters long.</value>
         [DataMember(Name = "metadata", EmitDefaultValue = true)]
         public Dictionary<string, Object> Metadata { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SigningOptions
+        /// </summary>
+        [DataMember(Name = "signing_options", EmitDefaultValue = true)]
+        public SubSigningOptions SigningOptions { get; set; }
 
         /// <summary>
         /// The URL you want signers redirected to after they successfully sign.
@@ -191,16 +232,20 @@ namespace Dropbox.Sign.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SignatureRequestBulkSendWithTemplateRequest {\n");
+            sb.Append("class SignatureRequestEditWithTemplateRequest {\n");
             sb.Append("  TemplateIds: ").Append(TemplateIds).Append("\n");
-            sb.Append("  SignerFile: ").Append(SignerFile).Append("\n");
-            sb.Append("  SignerList: ").Append(SignerList).Append("\n");
+            sb.Append("  Signers: ").Append(Signers).Append("\n");
             sb.Append("  AllowDecline: ").Append(AllowDecline).Append("\n");
             sb.Append("  Ccs: ").Append(Ccs).Append("\n");
             sb.Append("  ClientId: ").Append(ClientId).Append("\n");
             sb.Append("  CustomFields: ").Append(CustomFields).Append("\n");
+            sb.Append("  Files: ").Append(Files).Append("\n");
+            sb.Append("  FileUrls: ").Append(FileUrls).Append("\n");
+            sb.Append("  IsQualifiedSignature: ").Append(IsQualifiedSignature).Append("\n");
+            sb.Append("  IsEid: ").Append(IsEid).Append("\n");
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  SigningOptions: ").Append(SigningOptions).Append("\n");
             sb.Append("  SigningRedirectUrl: ").Append(SigningRedirectUrl).Append("\n");
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  TestMode: ").Append(TestMode).Append("\n");
@@ -225,15 +270,15 @@ namespace Dropbox.Sign.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SignatureRequestBulkSendWithTemplateRequest);
+            return this.Equals(input as SignatureRequestEditWithTemplateRequest);
         }
 
         /// <summary>
-        /// Returns true if SignatureRequestBulkSendWithTemplateRequest instances are equal
+        /// Returns true if SignatureRequestEditWithTemplateRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of SignatureRequestBulkSendWithTemplateRequest to be compared</param>
+        /// <param name="input">Instance of SignatureRequestEditWithTemplateRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SignatureRequestBulkSendWithTemplateRequest input)
+        public bool Equals(SignatureRequestEditWithTemplateRequest input)
         {
             if (input == null)
             {
@@ -247,15 +292,10 @@ namespace Dropbox.Sign.Model
                     this.TemplateIds.SequenceEqual(input.TemplateIds)
                 ) && 
                 (
-                    this.SignerFile == input.SignerFile ||
-                    (this.SignerFile != null &&
-                    this.SignerFile.Equals(input.SignerFile))
-                ) && 
-                (
-                    this.SignerList == input.SignerList ||
-                    this.SignerList != null &&
-                    input.SignerList != null &&
-                    this.SignerList.SequenceEqual(input.SignerList)
+                    this.Signers == input.Signers ||
+                    this.Signers != null &&
+                    input.Signers != null &&
+                    this.Signers.SequenceEqual(input.Signers)
                 ) && 
                 (
                     this.AllowDecline == input.AllowDecline ||
@@ -279,6 +319,26 @@ namespace Dropbox.Sign.Model
                     this.CustomFields.SequenceEqual(input.CustomFields)
                 ) && 
                 (
+                    this.Files == input.Files ||
+                    this.Files != null &&
+                    input.Files != null &&
+                    this.Files.SequenceEqual(input.Files)
+                ) && 
+                (
+                    this.FileUrls == input.FileUrls ||
+                    this.FileUrls != null &&
+                    input.FileUrls != null &&
+                    this.FileUrls.SequenceEqual(input.FileUrls)
+                ) && 
+                (
+                    this.IsQualifiedSignature == input.IsQualifiedSignature ||
+                    this.IsQualifiedSignature.Equals(input.IsQualifiedSignature)
+                ) && 
+                (
+                    this.IsEid == input.IsEid ||
+                    this.IsEid.Equals(input.IsEid)
+                ) && 
+                (
                     this.Message == input.Message ||
                     (this.Message != null &&
                     this.Message.Equals(input.Message))
@@ -288,6 +348,11 @@ namespace Dropbox.Sign.Model
                     this.Metadata != null &&
                     input.Metadata != null &&
                     this.Metadata.SequenceEqual(input.Metadata)
+                ) && 
+                (
+                    this.SigningOptions == input.SigningOptions ||
+                    (this.SigningOptions != null &&
+                    this.SigningOptions.Equals(input.SigningOptions))
                 ) && 
                 (
                     this.SigningRedirectUrl == input.SigningRedirectUrl ||
@@ -323,13 +388,9 @@ namespace Dropbox.Sign.Model
                 {
                     hashCode = (hashCode * 59) + this.TemplateIds.GetHashCode();
                 }
-                if (this.SignerFile != null)
+                if (this.Signers != null)
                 {
-                    hashCode = (hashCode * 59) + this.SignerFile.GetHashCode();
-                }
-                if (this.SignerList != null)
-                {
-                    hashCode = (hashCode * 59) + this.SignerList.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Signers.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AllowDecline.GetHashCode();
                 if (this.Ccs != null)
@@ -344,6 +405,16 @@ namespace Dropbox.Sign.Model
                 {
                     hashCode = (hashCode * 59) + this.CustomFields.GetHashCode();
                 }
+                if (this.Files != null)
+                {
+                    hashCode = (hashCode * 59) + this.Files.GetHashCode();
+                }
+                if (this.FileUrls != null)
+                {
+                    hashCode = (hashCode * 59) + this.FileUrls.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.IsQualifiedSignature.GetHashCode();
+                hashCode = (hashCode * 59) + this.IsEid.GetHashCode();
                 if (this.Message != null)
                 {
                     hashCode = (hashCode * 59) + this.Message.GetHashCode();
@@ -351,6 +422,10 @@ namespace Dropbox.Sign.Model
                 if (this.Metadata != null)
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+                }
+                if (this.SigningOptions != null)
+                {
+                    hashCode = (hashCode * 59) + this.SigningOptions.GetHashCode();
                 }
                 if (this.SigningRedirectUrl != null)
                 {
@@ -379,16 +454,10 @@ namespace Dropbox.Sign.Model
                 Value = TemplateIds,
             });
             types.Add(new OpenApiType(){
-                Name = "signer_file",
-                Property = "SignerFile",
-                Type = "System.IO.Stream",
-                Value = SignerFile,
-            });
-            types.Add(new OpenApiType(){
-                Name = "signer_list",
-                Property = "SignerList",
-                Type = "List<SubBulkSignerList>",
-                Value = SignerList,
+                Name = "signers",
+                Property = "Signers",
+                Type = "List<SubSignatureRequestTemplateSigner>",
+                Value = Signers,
             });
             types.Add(new OpenApiType(){
                 Name = "allow_decline",
@@ -415,6 +484,30 @@ namespace Dropbox.Sign.Model
                 Value = CustomFields,
             });
             types.Add(new OpenApiType(){
+                Name = "files",
+                Property = "Files",
+                Type = "List<System.IO.Stream>",
+                Value = Files,
+            });
+            types.Add(new OpenApiType(){
+                Name = "file_urls",
+                Property = "FileUrls",
+                Type = "List<string>",
+                Value = FileUrls,
+            });
+            types.Add(new OpenApiType(){
+                Name = "is_qualified_signature",
+                Property = "IsQualifiedSignature",
+                Type = "bool",
+                Value = IsQualifiedSignature,
+            });
+            types.Add(new OpenApiType(){
+                Name = "is_eid",
+                Property = "IsEid",
+                Type = "bool",
+                Value = IsEid,
+            });
+            types.Add(new OpenApiType(){
                 Name = "message",
                 Property = "Message",
                 Type = "string",
@@ -425,6 +518,12 @@ namespace Dropbox.Sign.Model
                 Property = "Metadata",
                 Type = "Dictionary<string, Object>",
                 Value = Metadata,
+            });
+            types.Add(new OpenApiType(){
+                Name = "signing_options",
+                Property = "SigningOptions",
+                Type = "SubSigningOptions",
+                Value = SigningOptions,
             });
             types.Add(new OpenApiType(){
                 Name = "signing_redirect_url",
