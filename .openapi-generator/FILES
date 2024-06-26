@@ -56,10 +56,6 @@ docs/SignatureRequestBulkCreateEmbeddedWithTemplateRequest.md
 docs/SignatureRequestBulkSendWithTemplateRequest.md
 docs/SignatureRequestCreateEmbeddedRequest.md
 docs/SignatureRequestCreateEmbeddedWithTemplateRequest.md
-docs/SignatureRequestEditEmbeddedRequest.md
-docs/SignatureRequestEditEmbeddedWithTemplateRequest.md
-docs/SignatureRequestEditRequest.md
-docs/SignatureRequestEditWithTemplateRequest.md
 docs/SignatureRequestGetResponse.md
 docs/SignatureRequestListResponse.md
 docs/SignatureRequestRemindRequest.md
@@ -263,10 +259,6 @@ src/Dropbox.Sign/Model/SignatureRequestBulkCreateEmbeddedWithTemplateRequest.cs
 src/Dropbox.Sign/Model/SignatureRequestBulkSendWithTemplateRequest.cs
 src/Dropbox.Sign/Model/SignatureRequestCreateEmbeddedRequest.cs
 src/Dropbox.Sign/Model/SignatureRequestCreateEmbeddedWithTemplateRequest.cs
-src/Dropbox.Sign/Model/SignatureRequestEditEmbeddedRequest.cs
-src/Dropbox.Sign/Model/SignatureRequestEditEmbeddedWithTemplateRequest.cs
-src/Dropbox.Sign/Model/SignatureRequestEditRequest.cs
-src/Dropbox.Sign/Model/SignatureRequestEditWithTemplateRequest.cs
 src/Dropbox.Sign/Model/SignatureRequestGetResponse.cs
 src/Dropbox.Sign/Model/SignatureRequestListResponse.cs
 src/Dropbox.Sign/Model/SignatureRequestRemindRequest.cs
