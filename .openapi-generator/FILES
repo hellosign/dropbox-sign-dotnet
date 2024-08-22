@@ -9,6 +9,7 @@ docs/AccountCreateResponse.md
 docs/AccountGetResponse.md
 docs/AccountResponse.md
 docs/AccountResponseQuotas.md
+docs/AccountResponseUsage.md
 docs/AccountUpdateRequest.md
 docs/AccountVerifyRequest.md
 docs/AccountVerifyResponse.md
@@ -218,6 +219,7 @@ src/Dropbox.Sign/Model/AccountCreateResponse.cs
 src/Dropbox.Sign/Model/AccountGetResponse.cs
 src/Dropbox.Sign/Model/AccountResponse.cs
 src/Dropbox.Sign/Model/AccountResponseQuotas.cs
+src/Dropbox.Sign/Model/AccountResponseUsage.cs
 src/Dropbox.Sign/Model/AccountUpdateRequest.cs
 src/Dropbox.Sign/Model/AccountVerifyRequest.cs
 src/Dropbox.Sign/Model/AccountVerifyResponse.cs
