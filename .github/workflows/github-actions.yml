@@ -28,7 +28,13 @@ jobs:
 
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == 'hellosign/dropbox-sign-dotnet'
+    permissions:
+      contents: read
+      id-token: write
+    if: >-
+      github.repository == 'hellosign/dropbox-sign-dotnet'
+      && github.ref == 'refs/heads/main'
+      && github.event_name != 'pull_request'
     needs: [ build ]
     env:
       BUILD_CONFIG: 'Release'
@@ -54,13 +60,18 @@ jobs:
       - name: Run pack
         run: dotnet pack --configuration ${BUILD_CONFIG} ${SOLUTION}.sln
 
-      # This runs on merging to "main" branch
-      # Builds and publishes package to nuget.org
+      - name: NuGet login with trusted publishing
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: Dropbox_Sign
+
       - name: Publish to nuget
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        run: dotnet nuget push src/${SOLUTION}/bin/Release/*.nupkg -k ${NUGET_API_KEY} -s https://api.nuget.org/v3/index.json
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: >-
+          dotnet nuget push
+          src/${SOLUTION}/bin/Release/*.nupkg
+          --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          --source https://api.nuget.org/v3/index.json
 
   # This job runs on merging to "main" branch
   # Creates a new tag using the value in the VERSION file
